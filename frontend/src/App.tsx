@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BookList from './BookList';
 import Cart from './Cart';
+import AdminBooks from './components/AdminBooks';
 import type { CartItem } from './types/CartItem';
 import type { Book } from './types/Book';
 
@@ -34,24 +36,32 @@ function App() {
   );
 
   return (
-    <div>
-      {view === 'list' ? (
-        <BookList
-          cartItems={cartItems}
-          cartTotal={cartTotal}
-          addToCart={addToCart}
-          savedPage={savedPage}
-          onGoToCart={() => setView('cart')}
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            view === 'list' ? (
+              <BookList
+                cartItems={cartItems}
+                cartTotal={cartTotal}
+                addToCart={addToCart}
+                savedPage={savedPage}
+                onGoToCart={() => setView('cart')}
+              />
+            ) : (
+              <Cart
+                cartItems={cartItems}
+                cartTotal={cartTotal}
+                removeFromCart={removeFromCart}
+                onContinueShopping={() => setView('list')}
+              />
+            )
+          }
         />
-      ) : (
-        <Cart
-          cartItems={cartItems}
-          cartTotal={cartTotal}
-          removeFromCart={removeFromCart}
-          onContinueShopping={() => setView('list')}
-        />
-      )}
-    </div>
+        <Route path="/adminbooks" element={<AdminBooks />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
