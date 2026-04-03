@@ -22,7 +22,13 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseCors(x => x.WithOrigins("http://localhost:5173"));
+app.UseCors(x => x
+    .WithOrigins(
+        "http://localhost:5173",
+        "https://black-sand-0c9b6d71e.2.azurestaticapps.net"
+    )
+    .AllowAnyHeader()
+    .AllowAnyMethod());
 
 app.UseHttpsRedirection();
 

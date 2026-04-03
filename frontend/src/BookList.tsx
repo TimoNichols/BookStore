@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import type { Book } from './types/Book';
 import type { CartItem } from './types/CartItem';
 import { Tooltip, Toast } from 'bootstrap';
+import API_URL from './config';
 
 interface BookListProps {
   cartItems: CartItem[];
@@ -38,7 +39,7 @@ function BookList({
 
   // Fetch categories once
   useEffect(() => {
-    fetch('https://localhost:7247/api/book/GetBookCategories')
+    fetch(`${API_URL}/api/book/GetBookCategories`)
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
@@ -49,7 +50,7 @@ function BookList({
       .map((c) => `categories=${encodeURIComponent(c)}`)
       .join('&');
 
-    const url = `https://localhost:7247/api/book?pageNum=${pageNum}&pageSize=${pageSize}&sortOrder=${sortOrder}${categoryParams ? '&' + categoryParams : ''}`;
+    const url = `${API_URL}/api/book?pageNum=${pageNum}&pageSize=${pageSize}&sortOrder=${sortOrder}${categoryParams ? `&${categoryParams}` : ''}`;
 
     fetch(url)
       .then((res) => res.json())

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import API_URL from '../config';
 
 type Book = {
   bookId: number;
@@ -29,9 +30,7 @@ function AdminBooks() {
   const [editingId, setEditingId] = useState<number | null>(null);
 
   const fetchBooks = async () => {
-    const response = await fetch(
-      'https://localhost:7247/api/Book?pageSize=1000&pageNum=1'
-    );
+    const response = await fetch(`${API_URL}/api/Book?pageSize=1000&pageNum=1`);
     const data = await response.json();
     setBooks(data.books);
   };
@@ -45,7 +44,7 @@ function AdminBooks() {
   };
 
   const handleAdd = async () => {
-    await fetch('https://localhost:7247/api/Book', {
+    await fetch(`${API_URL}/api/Book`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
@@ -69,7 +68,7 @@ function AdminBooks() {
   };
 
   const handleUpdate = async () => {
-    await fetch(`https://localhost:7247/api/Book/${editingId}`, {
+    await fetch(`${API_URL}/api/Book/${editingId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
@@ -81,7 +80,7 @@ function AdminBooks() {
 
   const handleDelete = async (id: number) => {
     if (!window.confirm('Delete this book?')) return;
-    await fetch(`https://localhost:7247/api/Book/${id}`, {
+    await fetch(`${API_URL}/api/Book/${id}`, {
       method: 'DELETE',
     });
     fetchBooks();

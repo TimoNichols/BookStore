@@ -147,3 +147,4 @@ C:\Users\Tim Nichols\Desktop\BookStore\backend\BookStore.API\BookStore.API\obj\D
 C:\Users\Tim Nichols\Desktop\BookStore\backend\BookStore.API\BookStore.API\obj\Debug\net10.0\BookStore.API.pdb
 C:\Users\Tim Nichols\Desktop\BookStore\backend\BookStore.API\BookStore.API\obj\Debug\net10.0\BookStore.API.genruntimeconfig.cache
 C:\Users\Tim Nichols\Desktop\BookStore\backend\BookStore.API\BookStore.API\obj\Debug\net10.0\ref\BookStore.API.dll
+C:\Users\Tim Nichols\Desktop\BookStore\backend\BookStore.API\BookStore.API\obj\Debug\net10.0\BookStore.API.sourcelink.json
